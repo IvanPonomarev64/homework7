@@ -134,15 +134,15 @@ average_grade_of_all_students(list_students, 'Python')
 
 list_lecturer = [some_lecturer, some_lecturer_1]
 
-def average_grade_of_all_lecturer(list_students, course):
-    my_list = []
+def average_grade_of_all_lecturer(list_lecturer, course):
+    mylist = []
     for lecturer in list_lecturer:
         if lecturer.grades.get(course) != None:
             for i in lecturer.grades.get(course):
-                my_list.append(i)
+                mylist.append(i)
             else:
                 pass
-        average_grade_of_all_students = sum(my_list) / len(my_list)
+        average_grade_of_all_students = sum(mylist) / len(mylist)
         print(average_grade_of_all_students)    
         
 average_grade_of_all_lecturer(list_lecturer, 'Python')
