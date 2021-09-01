@@ -117,32 +117,19 @@ print(f'\n{some_lecturer.average_rating < some_student.average_rating}')
 
 
 list_students = [some_student, some_student_1]
-
 def average_grade_of_all_students(list_students, course):
-    my_list = []
     for student in list_students:
-        if student.grades.get(course) != None:
-            for i in student.grades.get(course):
-                my_list.append(i)
-            else:
-                pass
-        average_grade_of_all_students = sum(my_list) / len(my_list)
-        print(average_grade_of_all_students)    
-        
-average_grade_of_all_students(list_students, 'Python')
+        if course in student.grades:
+            print(f'{sum(student.grades[course]) / len(student.grades[course])}')
+            
+average_grade_of_all_students(list_students, 'Git')
 
 
 list_lecturer = [some_lecturer, some_lecturer_1]
-
 def average_grade_of_all_lecturer(list_lecturer, course):
-    mylist = []
-    for lecturer in list_lecturer:
-        if lecturer.grades.get(course) != None:
-            for i in lecturer.grades.get(course):
-                mylist.append(i)
-            else:
-                pass
-        average_grade_of_all_students = sum(mylist) / len(mylist)
-        print(average_grade_of_all_students)    
+    for lecture in list_lecturer:
+        if course in lecture.grades:
+            print(f'{sum(lecture.grades[course]) / len(lecture.grades[course])}')    
         
-average_grade_of_all_lecturer(list_lecturer, 'Python')
+average_grade_of_all_lecturer(list_lecturer, 'Git')
+
