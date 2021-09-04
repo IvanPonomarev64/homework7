@@ -94,7 +94,7 @@ some_reviewer = Reviewer('Some', 'Buddy')
 # Выставление оценок студентам
 some_reviewer.rate_hw(some_student, 'Python', 10)
 some_reviewer.rate_hw(some_student, 'Python', 9.8)
-some_reviewer.rate_hw(some_student, 'Python', 11)
+some_reviewer.rate_hw(some_student, 'Python', 9.9)
 some_reviewer.rate_hw(some_student, 'Git', 10)
 some_reviewer.rate_hw(some_student_1, 'Python', 8)
 some_reviewer.rate_hw(some_student_1, 'Python', 9)
@@ -109,7 +109,7 @@ some_lecturer_1.courses_attached += ['Python']
 # Выставление оценок лекторам
 some_student.evaluation_of_lecturers(some_lecturer, 'Python', 10)
 some_student.evaluation_of_lecturers(some_lecturer, 'Python', 9.8)
-some_student.evaluation_of_lecturers(some_lecturer, 'Python', 10)
+some_student.evaluation_of_lecturers(some_lecturer, 'Python', 9.9)
 some_student.evaluation_of_lecturers(some_lecturer, 'Git', 9.9)
 some_student.evaluation_of_lecturers(some_lecturer_1, 'Python', 10)
 some_student.evaluation_of_lecturers(some_lecturer_1, 'Python', 10)
@@ -130,17 +130,34 @@ print(f'{some_student < some_student_1}\n')
 
 list_students = [some_student, some_student_1]
 def average_grade_of_all_students(list_students, course):
+    mylist = []
     for student in list_students:
-        if course in student.grades:
-            print(f'Cредняя оценка за домашние задания у студента: {sum(student.grades[course]) / len(student.grades[course])}')
-            
-average_grade_of_all_students(list_students, 'Python')
+        if student.grades.get(course) != None:
+            for kurs in student.grades.get(course):
+                mylist.append(kurs)
+        else:
+            pass
+    average_grade_of_all_students = sum(mylist) / len(mylist)
+    return average_grade_of_all_students
+
+average_grade_of_all_students = average_grade_of_all_students(list_students, course='Python')
+print(f'Средняя оценка за домашние задания по всем студентам курса "Python" = {average_grade_of_all_students}')
 
 
 list_lecturer = [some_lecturer, some_lecturer_1]
 def average_grade_of_all_lecturer(list_lecturer, course):
-    for lecture in list_lecturer:
-        if course in lecture.grades:
-            print(f'Cредняя оценка за лекции у лектора: {sum(lecture.grades[course]) / len(lecture.grades[course])}')    
-        
-average_grade_of_all_lecturer(list_lecturer, 'Python')
+    mylist = []
+    for lecturer in list_lecturer:
+        if lecturer.grades.get(course) != None:
+            for kurs in lecturer.grades.get(course):
+                mylist.append(kurs)
+        else:
+            pass
+    average_grade_of_all_lecturer = sum(mylist) / len(mylist)
+    return average_grade_of_all_lecturer
+
+average_grade_of_all_lecturer = average_grade_of_all_lecturer(list_lecturer, course='Python')
+print(f'Средняя оценка за лекции всех лекторов в рамках курса "Python" = {average_grade_of_all_lecturer}')
+
+
+
