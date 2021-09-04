@@ -6,7 +6,7 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        self.average_list = []
+        self.rating_list = []
         self.average_rating = []
         
     def evaluation_of_lecturers(self, lecturer, course, grade):
@@ -21,8 +21,8 @@ class Student:
     def average_grade_for_student(self, student):
         if isinstance(student, Student):   
             for i in student.grades.values():
-                student.average_list += i
-                self.average_rating = sum(student.average_list) / len(student.average_list)
+                student.rating_list += i
+                self.average_rating = sum(student.rating_list) / len(student.rating_list)
 
     def __lt__(self, other):
         if not isinstance(other, Student):
@@ -48,14 +48,14 @@ class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
-        self.average_list = []
+        self.rating_list = []
         self.average_rating = []
 
     def average_grade_for_lectures(self, lecturer):
         if isinstance(lecturer, Lecturer):   
             for i in lecturer.grades.values():
-                lecturer.average_list += i    
-                self.average_rating = sum(lecturer.average_list) / len(lecturer.average_list)
+                lecturer.rating_list += i    
+                self.average_rating = sum(lecturer.rating_list) / len(lecturer.rating_list)
 
     def __lt__(self, other):
         if not isinstance(other, Lecturer):
@@ -87,6 +87,7 @@ some_student.courses_in_progress += ['Git']
 some_student.finished_courses += ['Введение в программирование']
 some_student_1 = Student('Ivan', 'Ponomarev', 'male')
 some_student_1.courses_in_progress += ['Python']
+some_student_1.courses_in_progress += ['Git']
 
 # Ревьюеры
 some_reviewer = Reviewer('Some', 'Buddy')
@@ -95,9 +96,9 @@ some_reviewer = Reviewer('Some', 'Buddy')
 some_reviewer.rate_hw(some_student, 'Python', 10)
 some_reviewer.rate_hw(some_student, 'Python', 9.8)
 some_reviewer.rate_hw(some_student, 'Python', 9.9)
-some_reviewer.rate_hw(some_student, 'Git', 10)
 some_reviewer.rate_hw(some_student_1, 'Python', 8)
 some_reviewer.rate_hw(some_student_1, 'Python', 9)
+some_reviewer.rate_hw(some_student_1, 'Git', 9)
 
 # Лекторы
 some_lecturer = Lecturer('Some', 'Buddy')
